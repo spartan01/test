@@ -125,6 +125,7 @@ export type Config = {
       views?: {
         Account?: React.ComponentType
         Dashboard?: React.ComponentType
+        Login?: React.ComponentType
       }
     }
     pagination?: {

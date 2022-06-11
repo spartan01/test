@@ -84,6 +84,7 @@ export default buildConfig({
       //   <div>Hello</div>
       // ),
       views: {
+        // Login: CustomLoginView,
         // Dashboard: CustomDashboardView,
         // Account: CustomAccountView,
       },

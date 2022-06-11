@@ -68,8 +68,9 @@ export default joi.object({
         afterNavLinks: joi.array().items(component),
         Nav: component,
         views: joi.object({
-          Dashboard: component,
           Account: component,
+          Dashboard: component,
+          Login: component,
         }),
         graphics: joi.object({
           Icon: component,
