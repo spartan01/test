@@ -52,10 +52,10 @@ type UpdateArgs<T = any> = {
   data: Partial<T>;
   auth?: boolean;
   query?: any;
+  file?: boolean;
 };
 type DeleteArgs = {
   slug?: string;
-  id: string;
   auth?: boolean;
 };
 

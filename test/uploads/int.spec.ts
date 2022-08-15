@@ -12,7 +12,7 @@ const stat = promisify(fs.stat);
 
 require('isomorphic-fetch');
 
-let client;
+let client: RESTClient;
 
 describe('Collections - Uploads', () => {
   beforeAll(async (done) => {
@@ -33,7 +33,6 @@ describe('Collections - Uploads', () => {
           file: true,
           data: formData,
           auth: true,
-          headers: {},
         });
 
         expect(status).toBe(201);
@@ -55,6 +54,39 @@ describe('Collections - Uploads', () => {
         expect(doc.sizes).toHaveProperty('mobile');
         expect(doc.sizes).toHaveProperty('icon');
       });
+
+      describe('mimeType filters', () => {
+        const imageOnlySlug = 'image-only-media';
+        it('allows file upload matching filter', async () => {
+          const formData = new FormData();
+          formData.append('file', fs.createReadStream(path.join(__dirname, 'image.png')));
+
+          const { status, doc } = await client.create({
+            slug: imageOnlySlug,
+            file: true,
+            data: formData,
+            auth: true,
+          });
+
+          expect(status).toBe(201);
+          expect(await fileExists(path.join(__dirname, `./${imageOnlySlug}`, doc.filename))).toBe(true);
+        });
+
+        it('rejects file not matching filter', async () => {
+          const formData = new FormData();
+          formData.append('file', fs.createReadStream(path.join(__dirname, 'data/file.json')));
+
+          const { status, doc } = await client.create({
+            slug: imageOnlySlug,
+            file: true,
+            data: formData,
+            auth: true,
+          });
+
+          expect(status).toBe(400);
+          expect(await fileExists(path.join(__dirname, `./${imageOnlySlug}/file.json`))).toBe(false);
+        });
+      });
     });
 
     it('creates images that do not require all sizes', async () => {
@@ -65,7 +97,6 @@ describe('Collections - Uploads', () => {
         file: true,
         data: formData,
         auth: true,
-        headers: {},
       });
 
       expect(status).toBe(201);
@@ -90,7 +121,6 @@ describe('Collections - Uploads', () => {
         file: true,
         data: formData,
         auth: true,
-        headers: {},
       });
 
       expect(status).toBe(201);
@@ -123,7 +153,6 @@ describe('Collections - Uploads', () => {
       file: true,
       data: formData,
       auth: true,
-      headers: {},
     });
 
     expect(status).toBe(200);
@@ -141,7 +170,6 @@ describe('Collections - Uploads', () => {
       file: true,
       data: formData,
       auth: true,
-      headers: {},
     });
 
     const { status } = await client.delete(doc.id, {

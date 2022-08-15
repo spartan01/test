@@ -75,6 +75,14 @@ export default buildConfig({
       },
       fields: [],
     },
+    {
+      slug: 'image-only-media',
+      upload: {
+        staticURL: '/images',
+        mimeTypes: ['image/*'],
+      },
+      fields: [],
+    },
   ],
   onInit: async (payload) => {
     const uploadsDir = path.resolve(__dirname, './media');
