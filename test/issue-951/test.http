@@ -1,0 +1,9 @@
+### projects-create
+POST http://localhost:3000/api/posts HTTP/1.1
+content-type: application/json
+
+{
+  "title": "title1",
+  // Fill in one real id and one invalid
+  "tags": ["62fe8c090e5a1b954f53fe68", "nope"]
+}
