@@ -175,7 +175,7 @@
     "sharp": "^0.29.3",
     "slate": "^0.72.8",
     "slate-history": "^0.66.0",
-    "slate-hyperscript": "^0.66.0",
+    "slate-hyperscript": "^0.81.3",
     "slate-react": "^0.72.1",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.0.3",
