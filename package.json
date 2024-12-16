@@ -178,7 +178,7 @@
     "slate-hyperscript": "^0.66.0",
     "slate-react": "^0.72.1",
     "style-loader": "^2.0.0",
-    "terser-webpack-plugin": "^5.0.3",
+    "terser-webpack-plugin": "^5.3.11",
     "ts-essentials": "^7.0.1",
     "url-loader": "^4.1.1",
     "uuid": "^8.1.0",
